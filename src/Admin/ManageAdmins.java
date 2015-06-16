@@ -46,7 +46,10 @@ public class ManageAdmins {
     
         try
         {  
-           String queryStr =  "SELECT lastName,firstName, email FROM users WHERE accountType='Admin' ORDER BY lastName ASC";
+           String queryStr =  "SELECT lastName AS 'Last Name',"
+                            + "firstName as 'First Name', "
+                            + "email as 'Email' "
+                            + "FROM users WHERE accountType='Admin' ORDER BY lastName ASC";
            rs = st.executeQuery(queryStr);
            return rs;
         } catch(Exception ex)
