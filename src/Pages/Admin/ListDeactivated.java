@@ -122,6 +122,7 @@ public class ListDeactivated extends javax.swing.JFrame {
         btnRefresh.setBorderPainted(false);
         btnRefresh.setContentAreaFilled(false);
         btnRefresh.setFocusPainted(false);
+        btnRefresh.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh_hover.png"))); // NOI18N
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefreshActionPerformed(evt);
