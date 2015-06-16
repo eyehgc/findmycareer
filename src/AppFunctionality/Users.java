@@ -90,7 +90,8 @@ public class Users {
     
     try
     {  
-       String queryStr = "SELECT lastName, firstName, email, dateDeactivated FROM users "
+       String queryStr = "SELECT lastName AS 'Last Name', firstName AS 'First Name', "
+                       + "email AS 'Email', dateDeactivated as 'Date Deactivated' FROM users "
                        + "WHERE accountType='Standard' AND dateDeactivated>='"+ dateReturned 
                        + "' ORDER BY dateDeactivated DESC";
        rs = st.executeQuery(queryStr);
