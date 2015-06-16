@@ -225,7 +225,6 @@ public class ListDeactivated extends javax.swing.JFrame {
             setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
             btnRetry.setVisible(true);
             labelConnectionError.setVisible(true);
-
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         }
     }//GEN-LAST:event_btnRefreshActionPerformed
