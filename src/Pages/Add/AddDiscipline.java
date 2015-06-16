@@ -250,7 +250,7 @@ public class AddDiscipline extends javax.swing.JFrame {
                 labelMessage.setText("Error: You must select a valid industry.");
                 labelMessage.setVisible(true);               
             }
-            else if (disciplineEntered.equalsIgnoreCase("") || disciplineEntered.equalsIgnoreCase(null))
+            else if (disciplineEntered.isEmpty())
             {
                 labelMessage.setText("Error: You must enter a value in the 'discipline' field.");
                 labelMessage.setVisible(true);
@@ -265,7 +265,7 @@ public class AddDiscipline extends javax.swing.JFrame {
                 labelMessage.setText("Error: This discipline already exists");
                 labelMessage.setVisible(true);
             }
-            else if (skillsEntered.equalsIgnoreCase("") || skillsEntered.equalsIgnoreCase(null)){
+            else if (skillsEntered.isEmpty()){
                 labelMessage.setText("Error: You must enter a value in the 'essential skills' field.");
                 labelMessage.setVisible(true);
             }
