@@ -2,6 +2,7 @@ package Pages.Admin;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import Admin.ManageAdmins;
+import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -19,6 +20,7 @@ public class RemoveAdmin extends javax.swing.JFrame {
         labelConnectionError.setVisible(false);
         btnRetry.setVisible(false);
         labelMessage.setVisible(false);
+        btnRemove.setEnabled(false);
        
         
           try
@@ -26,13 +28,12 @@ public class RemoveAdmin extends javax.swing.JFrame {
             admins = new ManageAdmins();
             adminsRS = admins.listAllAdmins();
             tableAdmins.setModel(DbUtils.resultSetToTableModel(adminsRS));
-             //insert code that makes the table not editable and disables multi-selection
+            tableAdmins.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         }
         catch(Exception ex)
         {
            btnRetry.setVisible(true);
            labelConnectionError.setVisible(true);
-           btnRemove.setEnabled(false);
         }
     }
 
@@ -47,7 +48,13 @@ public class RemoveAdmin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableAdmins = new javax.swing.JTable();
+        tableAdmins = new javax.swing.JTable()
+        {
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;   //Disallow the editing of any cell
+            }
+        }
+        ;
         jLabel1 = new javax.swing.JLabel();
         btnRemove = new javax.swing.JButton();
         labelConnectionError = new javax.swing.JLabel();
@@ -71,6 +78,11 @@ public class RemoveAdmin extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableAdmins.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableAdminsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableAdmins);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -112,27 +124,27 @@ public class RemoveAdmin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(38, 38, 38)
-                                        .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelMessage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelConnectionError)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelConnectionError)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(116, 116, 116)
-                                .addComponent(btnRetry, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(labelMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(116, 116, 116)
+                        .addComponent(btnRetry, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,13 +159,13 @@ public class RemoveAdmin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRemove))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(labelMessage)
                 .addGap(18, 18, 18)
+                .addComponent(labelMessage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelConnectionError)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRetry)
-                .addGap(24, 24, 24))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,22 +200,23 @@ public class RemoveAdmin extends javax.swing.JFrame {
         if (JOptionPane.showConfirmDialog(null, "You are about to remove "+firstName+" "+lastName +" from the database."+"\n"
                                             + "Do you wish to continue?",
                                                "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-        try
-        {
-          
-                admins = new ManageAdmins();
-                admins.removeAdmin(emailSelected);
-                labelMessage.setText("'" + firstName+" "+lastName + "' has been removed from the database.");
-                labelMessage.setVisible(true);
+            // yes option
+            try
+            {
+
+                    admins = new ManageAdmins();
+                    admins.removeAdmin(emailSelected);
+                    labelMessage.setText("" + firstName+" "+lastName + " has been removed from the database.");
+                    labelMessage.setVisible(true);
+            }
+            catch(Exception ex)
+            {
+                labelMessage.setText("Error: Something went wrong.");
+            }
+        
+        } else {
+            // no option: closes the dialog box, does nothing
         }
-        catch(Exception ex)
-        {
-            labelMessage.setText("Error: Something went wrong.");
-        }
-        // yes option
-    } else {
-        // no option
-    }
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
@@ -227,6 +240,11 @@ public class RemoveAdmin extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void tableAdminsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableAdminsMouseClicked
+        // TODO add your handling code here:
+         btnRemove.setEnabled(true);      
+    }//GEN-LAST:event_tableAdminsMouseClicked
 
     /**
      * @param args the command line arguments
