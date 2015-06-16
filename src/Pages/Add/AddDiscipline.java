@@ -223,10 +223,8 @@ public class AddDiscipline extends javax.swing.JFrame {
         int index = comboIndustry.getSelectedIndex();
         if (index > 0)
         {
-//            String industryChosen = (String) comboIndustry.getSelectedItem();
             txtDiscipline.setEnabled(true);
-            txtEssentialSkills.setVisible(true);
-            
+            txtEssentialSkills.setVisible(true);   
         }
         else
         {
