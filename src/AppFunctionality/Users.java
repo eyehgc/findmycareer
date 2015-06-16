@@ -1,6 +1,9 @@
 package AppFunctionality;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -96,6 +99,22 @@ public class Users {
       System.out.println("Error: " + ex.getMessage());  
     }
     return null;
+  } 
+    
+    public void reactivateUser(String emailSelected)
+  {
+      DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+       Date date = new Date();
+       String date1 = dateFormat.format(date);
+    try
+    {  
+       String queryStr = "UPDATE users SET accountStatus= 'Active', lastActive='" + date1 + "' ,dateDeactivated= NULL WHERE email='" + emailSelected + "'";
+       st.executeUpdate(queryStr);
+    } catch(SQLException ex)
+    {
+      System.out.println("Error: " + ex.getMessage());  
+    }
+
   } 
       
     
