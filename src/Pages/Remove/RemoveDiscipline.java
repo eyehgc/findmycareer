@@ -98,6 +98,7 @@ public class RemoveDiscipline extends javax.swing.JFrame {
             }
         });
 
+        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ic_action_refresh2.png"))); // NOI18N
         btnRefresh.setPreferredSize(new java.awt.Dimension(45, 23));
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +227,12 @@ public class RemoveDiscipline extends javax.swing.JFrame {
                            }
             catch(Exception ex)
             {
-
+                setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+                comboIndustry.setEnabled(false);
+                comboDiscipline.setEnabled (false);
+                btnRetry.setVisible(true);
+                labelConnectionError.setVisible(true);  
+                setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
             }
         } else{
         comboDiscipline.setEnabled(false);
@@ -258,7 +264,8 @@ public class RemoveDiscipline extends javax.swing.JFrame {
                            }
             catch(Exception ex)
             {
-                
+                btnRetry.setVisible(true);
+                labelConnectionError.setVisible(true);
             }
         } else{
         comboDiscipline.setEnabled(false);
@@ -282,30 +289,29 @@ public class RemoveDiscipline extends javax.swing.JFrame {
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
-         String disciplineChosen = (String) comboDiscipline.getSelectedItem();
+        String disciplineChosen = (String) comboDiscipline.getSelectedItem();
         int index = comboDiscipline.getSelectedIndex();
         
         //Popup dialog box
-         if (JOptionPane.showConfirmDialog(null, "You are about to delete " + disciplineChosen + " and all its subsequent information."+"\n"
+        if (JOptionPane.showConfirmDialog(null, "You are about to delete " + disciplineChosen + " and all its subsequent information."+"\n"
                                             + "Do you wish to continue?",
                                                "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-        try
-        {
-          
+            try
+            {  // yes option
                 disciplines = new Disciplines();
                 int disciplineID = disciplines.getDisciplineIDByName(disciplineChosen);
                 disciplines.removeDiscipline(disciplineID);
                 labelMessage.setText("'" + disciplineChosen + "' has been removed from the database.");
                 labelMessage.setVisible(true);
+            }
+            catch(Exception ex)
+            {
+                    labelMessage.setText("Error: Something went wrong.");
+            }
+       
+        } else {
+            // no option
         }
-        catch(Exception ex)
-        {
-            labelMessage.setText("Error: Something went wrong.");
-        }
-        // yes option
-    } else {
-        // no option
-    }
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     /**
