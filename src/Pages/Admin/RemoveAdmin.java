@@ -232,10 +232,8 @@ public class RemoveAdmin extends javax.swing.JFrame {
         {
             setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
             btnRemove.setEnabled(false);
-
             btnRetry.setVisible(true);
             labelConnectionError.setVisible(true);
-
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         }
 
