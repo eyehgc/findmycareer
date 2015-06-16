@@ -100,6 +100,7 @@ public class RemoveIndustry extends javax.swing.JFrame {
             }
         });
 
+        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ic_action_refresh2.png"))); // NOI18N
         btnRefresh.setPreferredSize(new java.awt.Dimension(45, 23));
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,18 +184,17 @@ public class RemoveIndustry extends javax.swing.JFrame {
                                                "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
         try
         {
-          
-                industries = new Industries();
-                int industryID = industries.getIndustryIDByName(industryChosen);
-                industries.removeIndustry(industryID);
-                labelMessage.setText("'" + industryChosen + "' has been removed from the database.");
-                labelMessage.setVisible(true);
+             // yes option
+            industries = new Industries();
+            int industryID = industries.getIndustryIDByName(industryChosen);
+            industries.removeIndustry(industryID);
+            labelMessage.setText("'" + industryChosen + "' has been removed from the database.");
+            labelMessage.setVisible(true);
         }
         catch(Exception ex)
         {
             labelMessage.setText("Error: Something went wrong.");
-        }
-        // yes option
+        }       
     } else {
         // no option
     }
@@ -215,7 +215,6 @@ public class RemoveIndustry extends javax.swing.JFrame {
          int index = comboIndustry.getSelectedIndex();
         if (index > 0)
         {
-//            String industryChosen = (String) comboIndustry.getSelectedItem();
             btnRemove.setEnabled(true);
         }
         else
@@ -246,14 +245,11 @@ public class RemoveIndustry extends javax.swing.JFrame {
         catch(Exception ex)
         {
             setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-            comboIndustry.setEnabled(false);
-                      
+            comboIndustry.setEnabled(false);                    
             btnRetry.setVisible(true);
             labelConnectionError.setVisible(true);  
-               
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         }
-        
     
     }//GEN-LAST:event_btnRefreshActionPerformed
 
