@@ -39,6 +39,7 @@ public class ManageAdmins {
    * <strong>Purpose:</strong><br />
    * This method lists all admins in database.
    * 
+   * @return null 
    */
    public ResultSet listAllAdmins()
   {
@@ -61,6 +62,8 @@ public class ManageAdmins {
    * This method is used to make sure the email 
    * isn't already registered in the database.
    * 
+   * @param email
+   * @return isValid;
    */  
   public boolean queryDBForEmail(String email)
     {
@@ -88,28 +91,32 @@ public class ManageAdmins {
    * <strong>Purpose:</strong><br />
    * This method is used to add an admin to the database.
    * 
+   * @param email
+   * @param password2
+   * @param firstName
+   * @param lastName
+   * @return null
    */
   public ResultSet addAdmin(String email, String password2, String firstName, String lastName)
   {
-    
-    try
-    {  
-       DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-       Date date = new Date();
-       String date1 = dateFormat.format(date);
-       String queryStr = "INSERT INTO users (email, password, accountType, firstName, lastName, "
-                        + "birthDate, gender, employmentStatus,"
-                        + "lastActive, registrationDate)"
-                        + "VALUES ('" + email +"','" + password2 + "','Admin','" + firstName + "','" + lastName + "','"
-                        + date1 + "', 'NA', 'NA','"
-                        + date1 + "','" + date1 + "')";
-           
-       st.executeUpdate(queryStr);
-    } catch(Exception ex)
-    {
-      System.out.println("Error: " + ex.getMessage());  
-    }
-    return null;
+        try
+        {  
+           DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+           Date date = new Date();
+           String date1 = dateFormat.format(date);
+           String queryStr = "INSERT INTO users (email, password, accountType, firstName, lastName, "
+                            + "birthDate, gender, employmentStatus,"
+                            + "lastActive, registrationDate)"
+                            + "VALUES ('" + email +"','" + password2 + "','Admin','" + firstName + "','" + lastName + "','"
+                            + date1 + "', 'NA', 'NA','"
+                            + date1 + "','" + date1 + "')";
+
+           st.executeUpdate(queryStr);
+        } catch(Exception ex)
+        {
+          System.out.println("Error: " + ex.getMessage());  
+        }
+        return null;
   } 
    
    /**
@@ -118,6 +125,7 @@ public class ManageAdmins {
    * This method is used to remove 
    * an admin from the database.
    * 
+   * @param emailSelected
    */
    public void removeAdmin(String emailSelected)
     {
