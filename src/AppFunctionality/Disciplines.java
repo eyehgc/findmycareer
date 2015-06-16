@@ -208,6 +208,7 @@ public class Disciplines {
    * in the database.
    * 
    * @param disciplineName
+   * @return isValid 
    */
     public boolean queryDBForDiscipline(String disciplineName)
     {
@@ -237,6 +238,9 @@ public class Disciplines {
    * This method is used to add
    * a discipline into the database.
    * 
+   * @param industryID
+   * @param disciplineEntered
+   * @param skillsEntered
    */
     public void addDiscipline(int industryID, String disciplineEntered, String skillsEntered)
     {
@@ -256,6 +260,7 @@ public class Disciplines {
    * This method is used to remove 
    * a discipline from the database.
    * 
+   * @param disciplineID
    */
   public void removeDiscipline(int disciplineID)
     {
