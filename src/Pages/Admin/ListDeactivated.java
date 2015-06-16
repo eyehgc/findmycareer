@@ -117,7 +117,12 @@ public class ListDeactivated extends javax.swing.JFrame {
             }
         });
 
-        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ic_action_refresh2.png"))); // NOI18N
+        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
+        btnRefresh.setBorder(null);
+        btnRefresh.setBorderPainted(false);
+        btnRefresh.setContentAreaFilled(false);
+        btnRefresh.setFocusPainted(false);
+        btnRefresh.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh_hover.png"))); // NOI18N
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefreshActionPerformed(evt);
@@ -161,7 +166,7 @@ public class ListDeactivated extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnReactivate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRefresh)))
+                        .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(labelMessage)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,7 +230,6 @@ public class ListDeactivated extends javax.swing.JFrame {
             setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
             btnRetry.setVisible(true);
             labelConnectionError.setVisible(true);
-
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         }
     }//GEN-LAST:event_btnRefreshActionPerformed

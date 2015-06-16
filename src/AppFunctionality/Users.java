@@ -39,17 +39,18 @@ public class Users {
    * This method is used to list all users 
    * in the database by their last name.
    * 
+   * @return null
    */
     public ResultSet listAllUsers()
   {
     try
     {
-       String queryStr = "SELECT * FROM users WHERE accountType='Standard' ORDER BY lastName ASC";
-       rs = st.executeQuery(queryStr);
-       return rs;
+        String queryStr = "SELECT * FROM users WHERE accountType='Standard' ORDER BY lastName ASC";
+        rs = st.executeQuery(queryStr);
+        return rs;
     } catch(Exception ex)
     {
-      System.out.println("Error: " + ex.getMessage());  
+        System.out.println("Error: " + ex.getMessage());  
     }
     return null;
   } 
@@ -89,7 +90,8 @@ public class Users {
     
     try
     {  
-       String queryStr = "SELECT lastName, firstName, email, dateDeactivated FROM users "
+       String queryStr = "SELECT lastName AS 'Last Name', firstName AS 'First Name', "
+                       + "email AS 'Email', dateDeactivated as 'Date Deactivated' FROM users "
                        + "WHERE accountType='Standard' AND dateDeactivated>='"+ dateReturned 
                        + "' ORDER BY dateDeactivated DESC";
        rs = st.executeQuery(queryStr);
@@ -104,18 +106,18 @@ public class Users {
     public void reactivateUser(String emailSelected)
   {
       DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-       Date date = new Date();
-       String date1 = dateFormat.format(date);
-    try
-    {  
-       String queryStr = "UPDATE users SET accountStatus= 'Active', lastActive='" + date1 + "' ,dateDeactivated= NULL WHERE email='" + emailSelected + "'";
-       st.executeUpdate(queryStr);
-    } catch(SQLException ex)
-    {
-      System.out.println("Error: " + ex.getMessage());  
-    }
-
+      Date date = new Date();
+      String date1 = dateFormat.format(date);
+        try
+        {  
+           String queryStr = "UPDATE users SET accountStatus= 'Active', "
+                            + "lastActive='" + date1 + "' ,"
+                            + "dateDeactivated= NULL WHERE email='" + emailSelected + "'";
+           st.executeUpdate(queryStr);
+        } catch(SQLException ex)
+        {
+          System.out.println("Error: " + ex.getMessage());  
+        }
   } 
-      
-    
+        
 }
