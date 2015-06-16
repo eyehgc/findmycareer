@@ -44,25 +44,27 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="labelMessage" alignment="1" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
-                          <Component id="labelConnectionError" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="259" max="-2" attributes="0"/>
-                          <Component id="btnRetry" min="-2" pref="78" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="531" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="531" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnReactivate" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnRefresh" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
+              </Group>
+              <Component id="labelConnectionError" alignment="1" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnRetry" min="-2" pref="78" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="291" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -72,12 +74,21 @@
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="371" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="labelConnectionError" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnRetry" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="371" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="btnReactivate" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btnRefresh" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <Component id="labelMessage" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelConnectionError" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnRetry" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -156,9 +167,42 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableDeactivatedMouseClicked"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable(){&#xa;    public boolean isCellEditable(int rowIndex, int colIndex) {&#xa;        return false;   //Disallow the editing of any cell&#xa;    }&#xa;}"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="btnReactivate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Reactivate"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReactivateActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnRefresh">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/ic_action_refresh2.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRefreshActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelMessage">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="This label  is not displayed by default"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
