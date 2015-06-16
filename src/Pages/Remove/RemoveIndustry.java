@@ -106,6 +106,7 @@ public class RemoveIndustry extends javax.swing.JFrame {
         btnRefresh.setContentAreaFilled(false);
         btnRefresh.setFocusPainted(false);
         btnRefresh.setPreferredSize(new java.awt.Dimension(45, 23));
+        btnRefresh.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh_hover.png"))); // NOI18N
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefreshActionPerformed(evt);
