@@ -117,12 +117,7 @@ public class ListDeactivated extends javax.swing.JFrame {
             }
         });
 
-        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
-        btnRefresh.setBorder(null);
-        btnRefresh.setBorderPainted(false);
-        btnRefresh.setContentAreaFilled(false);
-        btnRefresh.setFocusPainted(false);
-        btnRefresh.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh_hover.png"))); // NOI18N
+        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh_grey.png"))); // NOI18N
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefreshActionPerformed(evt);
