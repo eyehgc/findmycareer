@@ -20,7 +20,7 @@ public class RemoveAdmin extends javax.swing.JFrame {
         labelConnectionError.setVisible(false);
         btnRetry.setVisible(false);
         labelMessage.setVisible(false);
-        btnRemove.setEnabled(false);
+        
        
         
           try
@@ -29,6 +29,7 @@ public class RemoveAdmin extends javax.swing.JFrame {
             adminsRS = admins.listAllAdmins();
             tableAdmins.setModel(DbUtils.resultSetToTableModel(adminsRS));
             tableAdmins.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            btnRemove.setEnabled(false);
         }
         catch(Exception ex)
         {
@@ -226,7 +227,8 @@ public class RemoveAdmin extends javax.swing.JFrame {
         {
             admins = new ManageAdmins();
             adminsRS = admins.listAllAdmins();
-            tableAdmins.setModel(DbUtils.resultSetToTableModel(adminsRS));         
+            tableAdmins.setModel(DbUtils.resultSetToTableModel(adminsRS));        
+            btnRemove.setEnabled(false);
         }
         catch(Exception ex)
         {
